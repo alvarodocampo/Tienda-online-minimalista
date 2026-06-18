@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Tienda Online</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            border-radius: 10px;
+        }
+
+        .header h1 {
+            margin-top: 10px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-end;
+            padding: 15px 50px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+
+        }
+
+        .menu a {
+            display: inline-block;
+            background-color: #f8f9fa;
+            color: #333;
+            text-decoration: none;
+            padding: 12px 20px;
+            border: 2px solid #dcdcdc;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+        .menu a:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.35);
+}
+
+
+        .productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 30px;
+        }
+
+        .producto {
+            background: white;
+            width: 280px;
+            min-height: 500px;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .producto img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .precio {
+            color: green;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .comprar {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .comprar:hover {
+            background-color: #218838;
+            color: white;
+        }
+
+        .detalle {
+            display: inline-block;
+            margin-top: 10px;
+            color: #333;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .detalle:hover {
+            color: #007bff;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="header">
+        <img src="/media/logo.png" class="logo">
+        <h1>SHARK MARKET</h1>
+    </div>
+
+    <div class="menu">
+        <a href="{% url 'cart_detail' %}">Carrito</a>
+    </div>
+
+    <div class="productos">
+
+        {% for product in products %}
+            <div class="producto">
+
+                {% if product.image %}
+                    <img src="{{ product.image.url }}">
+                {% endif %}
+
+                <h2>{{ product.name }}</h2>
+
+                <p>{{ product.description|truncatechars:120 }}</p>
+
+                <p class="precio">{{ product.price }} €</p>
+
+                <a class="Añadir al carrito" href="{% url 'add_to_cart' product.id %}">
+                    Añadir al Carrito
+                </a>
+
+                <br>
+
+                <a class="detalle" href="{% url 'product_detail' product.id %}">
+                    Ver detalles
+                </a>
+
+            </div>
+
+        {% empty %}
+            <p>No hay productos disponibles.</p>
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>

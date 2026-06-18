@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pago completado</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding-top: 80px;
+            background-color: #f4f4f4;
+        }
+
+        .success {
+            background: white;
+            width: 500px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: green;
+        }
+
+        a {
+            text-decoration: none;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="success">
+
+        <h1>✅ Pago realizado correctamente</h1>
+
+        <p>Pedido número {{ order.id }}</p>
+
+        <p>Estado: PAGADO</p>
+
+        <br>
+
+        <a href="/">
+            Volver a la tienda
+        </a>
+
+    </div>
+
+</body>
+</html>

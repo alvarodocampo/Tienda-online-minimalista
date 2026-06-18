@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carrito</title>
+</head>
+<body>
+
+    <h1>Mi carrito</h1>
+
+    {% for item in cart_items %}
+        <div>
+
+            <h2>{{ item.product.name }}</h2>
+
+            <p>Precio: {{ item.product.price }} €</p>
+
+            <p>Cantidad: {{ item.quantity }}</p>
+
+            <p>
+                <strong>
+                    Subtotal: {{ item.subtotal }} €
+                </strong>
+            </p>
+
+            <a href="{% url 'remove_from_cart' item.product.id %}">
+                Eliminar producto
+            </a>
+
+            <hr>
+
+        </div>
+
+    {% empty %}
+
+        <p>El carrito está vacío.</p>
+
+    {% endfor %}
+
+    <hr style="border: 2px solid black;">
+
+    <h2 style="color: green;">
+        Total del pedido: {{ total }} €
+    </h2>
+
+    <br>
+
+    <a href="{% url 'create_order' %}">
+        Finalizar compra
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Seguir comprando
+    </a>
+
+</body>
+</html>
